@@ -1,0 +1,29 @@
+{
+  "Title": "Tom Foster",
+  "Email": "trfoster1794@gmail.com",
+  "PhoneNumber": "+44 7378 343 998",
+  "GithubUrl": "https://github.com/trfoster",
+  "Sections": [
+    {
+      "Title": "Education",
+      "Items": [
+        {
+          "Title": "University of Sheffield",
+          "Date": "2023 - 2026",
+          "SubTitle": "BEng Software Engineering",
+          "Points": [
+            {
+              "Bolded": "Relevant Modules: ",
+              "Content": "Cybersecurity, Cryptography, Software Reengineering, Software Testing"
+            },
+            {
+              "Bolded": "Dissertation: ",
+              "Content": "Performant programming teaching tool"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+  
+}
