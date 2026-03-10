@@ -3,6 +3,7 @@ using System.Net.Mime;
 using System.Text.Json;
 using PDFGenerator;
 using QuestPDF.Companion;
+using QuestPDF.Drawing;
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
@@ -10,6 +11,9 @@ using Document = QuestPDF.Fluent.Document;
 
 QuestPDF.Settings.License = LicenseType.Community;
 const int defaultFontSize = 12;
+
+using var fontStream = File.OpenRead("../../../Times New Roman.ttf");
+FontManager.RegisterFont(fontStream);
 
 string json = File.ReadAllText("../../../document.json");
 var cv = JsonSerializer.Deserialize<Root>(json)!;
@@ -60,6 +64,7 @@ Document CreateCv(Root document) {
                     column.Title(documentSection.Title);
                     foreach (var datedItem in documentSection.Items) {
                         column.DatedItem(datedItem);
+                        column.Item().PaddingVertical(10);
                     }
                 }
             });
@@ -75,7 +80,7 @@ public static class Extensions {
 
     public static void DatedItem(this ColumnDescriptor column, DatedItem item) {
         column.Item().Row(row => {
-            row.RelativeItem().Text(item.Title).Bold();
+            row.RelativeItem().Text(item.Title).Bold().FontSize(13);
             if (item.Date is not null) {
                 row.AutoItem().Text(item.Date).Bold();
             }
@@ -90,12 +95,13 @@ public static class Extensions {
                 }
             });
         }
+        column.Item().PaddingVertical(5);
 
         if (item.Points is not null && item.Points.Length > 0) {
             for (int i = 0; i < item.Points.Length; i++) {
                 column.Item().Text(t => {
                     if (item.Points[i].Bolded is not null) {
-                        t.Span("• " + item.Points[i].Bolded).Bold();
+                        t.Span("- " + item.Points[i].Bolded).Bold();
                     }
                     t.Span(item.Points[i].Content);
                 });
