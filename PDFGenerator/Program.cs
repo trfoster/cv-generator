@@ -64,7 +64,7 @@ Document CreateCv(Root document) {
                     column.Title(documentSection.Title);
                     foreach (var datedItem in documentSection.Items) {
                         column.DatedItem(datedItem);
-                        column.Item().PaddingVertical(10);
+                        column.Item().PaddingVertical(5);
                     }
                 }
             });
@@ -100,8 +100,9 @@ public static class Extensions {
         if (item.Points is not null && item.Points.Length > 0) {
             for (int i = 0; i < item.Points.Length; i++) {
                 column.Item().Text(t => {
+                    t.Span("- ");
                     if (item.Points[i].Bolded is not null) {
-                        t.Span("- " + item.Points[i].Bolded).Bold();
+                        t.Span(item.Points[i].Bolded).Bold();
                     }
                     t.Span(item.Points[i].Content);
                 });
