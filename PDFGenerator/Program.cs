@@ -1,5 +1,7 @@
 ﻿using System.Collections.Concurrent;
 using System.Net.Mime;
+using System.Text.Json;
+using PDFGenerator;
 using QuestPDF.Companion;
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
@@ -9,46 +11,61 @@ using Document = QuestPDF.Fluent.Document;
 QuestPDF.Settings.License = LicenseType.Community;
 const int defaultFontSize = 12;
 
-Document.Create(container => {
-    container.Page(page => {
-        page.Size(PageSizes.A4);
-        page.Margin(1.5f, Unit.Centimetre);
-        page.DefaultTextStyle(t => t.FontSize(defaultFontSize).FontFamily("Times New Roman"));
-        
-        page.Header().Column(column => {
-                column.Item().Text("Tom Foster").Bold().FontSize(30).AlignCenter();
+string json = File.ReadAllText("../../../document.json");
+var cv = JsonSerializer.Deserialize<Root>(json)!;
+    
+CreateCv(cv).ShowInCompanion();
+return;
+
+Document CreateCv(Root document) {
+    return Document.Create(container => {
+        container.Page(page => {
+            page.Size(PageSizes.A4);
+            page.Margin(1.5f, Unit.Centimetre);
+            page.DefaultTextStyle(t => t.FontSize(defaultFontSize).FontFamily("Times New Roman"));
+
+            page.Header().Column(column => {
+                column.Item().Text(document.Title).Bold().FontSize(30).AlignCenter();
                 column.Item().AlignCenter().Row(row => {
-                    row.AutoItem().Text("trfoster1794@gmail.com");
-                    row.AutoItem()
-                        .PaddingHorizontal(10)
-                        .LineVertical(1);
-                    row.AutoItem().Text("+44 7378 343 998");
-                    row.AutoItem()
-                        .PaddingHorizontal(10)
-                        .LineVertical(1);
-                    row.AutoItem().Text(t => {
-                        t.Hyperlink("github.com/trfoster", "https://github.com/trfoster").Underline()
-                            .FontColor(Colors.Blue.Medium);
-                    });
+                    row.AutoItem().Text(document.Email);
+                    if (document.PhoneNumber is not null) {
+                        row.AutoItem()
+                            .PaddingHorizontal(10)
+                            .LineVertical(1);
+                        row.AutoItem().Text(document.PhoneNumber);
+                    }
+                    if (document.GithubUrl is not null) {
+                        row.AutoItem()
+                            .PaddingHorizontal(10)
+                            .LineVertical(1);
+                        row.AutoItem().Text(t => {
+                            t.Hyperlink("Github", document.GithubUrl).Underline()
+                                .FontColor(Colors.Blue.Medium);
+                        });
+                    }
+                    if (document.LinkedInUrl is not null) {
+                        row.AutoItem()
+                            .PaddingHorizontal(10)
+                            .LineVertical(1);
+                        row.AutoItem().Text(t => {
+                            t.Hyperlink("LinkedIn", document.LinkedInUrl).Underline()
+                                .FontColor(Colors.Blue.Medium);
+                        });
+                    }
                 });
-        });
-            
+            });
 
-        page.Content().PaddingVertical(0.5f, Unit.Centimetre).Column(column => {
-            column.Title("Education");
-            column.DatedItem("University of Sheffield", "2023 - 2026", 
-                "BEng Software Engineering",
-                points: [("Relevant modules: ","Cybersecurity, Cryptography, Software Reengineering, Software Testing"),
-                ("Dissertation: ", "")]);
-            column.Title("skills");
-            column.Item().PaddingBottom(15).Text("C#, Java, MVC, HTML, CSS, Ruby, Python, Haskell, JS, .NET, SQL, Fluent Spanish");
-            column.Title("Experience");
-            
+            page.Content().PaddingVertical(0.5f, Unit.Centimetre).Column(column => {
+                foreach (var documentSection in document.Sections) {
+                    column.Title(documentSection.Title);
+                    foreach (var datedItem in documentSection.Items) {
+                        column.DatedItem(datedItem);
+                    }
+                }
+            });
         });
-
-        page.Footer().AlignCenter().Text("Really nice footer");
     });
-}).ShowInCompanion();
+}
 
 public static class Extensions {
     public static void Title(this ColumnDescriptor column, string title) {
@@ -56,31 +73,32 @@ public static class Extensions {
         column.Item().PaddingVertical(5).LineHorizontal(1);
     }
 
-    public static void DatedItem(this ColumnDescriptor column, string company, string? date = null, string? role = null, string? location = null,
-        (string?, string)[]? points = null) {
+    public static void DatedItem(this ColumnDescriptor column, DatedItem item) {
         column.Item().Row(row => {
-            row.RelativeItem().Text(company).Bold();
-            if (date is not null) {
-                row.AutoItem().Text(date).Bold();
+            row.RelativeItem().Text(item.Title).Bold();
+            if (item.Date is not null) {
+                row.AutoItem().Text(item.Date).Bold();
             }
         });
-        if (role is not null ||  location is not null) {
+        if (item.SubTitle is not null || item.Location is not null) {
             column.Item().Row(row => {
-                if (role is not null) {
-                    row.RelativeItem().Text(role);
+                if (item.SubTitle is not null) {
+                    row.RelativeItem().Text(item.SubTitle);
                 }
-                if (location is not null) {
-                    row.AutoItem().Text(location).Italic();
+                if (item.Location is not null) {
+                    row.AutoItem().Text(item.Location).Italic();
                 }
             });
         }
 
-        if (points is not null && points.Length > 0) {
-            for (int i = 0; i < points.Length; i++) {
-                if (points[i].Item1 is not null) {
-                    column.Item().Text("• " + points[i]);
-                }
-                column.Item().Text("• " + points[i]);
+        if (item.Points is not null && item.Points.Length > 0) {
+            for (int i = 0; i < item.Points.Length; i++) {
+                column.Item().Text(t => {
+                    if (item.Points[i].Bolded is not null) {
+                        t.Span("• " + item.Points[i].Bolded).Bold();
+                    }
+                    t.Span(item.Points[i].Content);
+                });
             }
         }
     }
