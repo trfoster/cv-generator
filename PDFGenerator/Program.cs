@@ -17,7 +17,7 @@ FontManager.RegisterFont(fontStream);
 
 string json = File.ReadAllText("../../../document.json");
 var cv = JsonSerializer.Deserialize<Root>(json)!;
-    
+
 CreateCv(cv).ShowInCompanion();
 return;
 
@@ -25,7 +25,7 @@ Document CreateCv(Root document) {
     return Document.Create(container => {
         container.Page(page => {
             page.Size(PageSizes.A4);
-            page.Margin(1.5f, Unit.Centimetre);
+            page.Margin(1f, Unit.Centimetre);
             page.DefaultTextStyle(t => t.FontSize(defaultFontSize).FontFamily("Times New Roman"));
 
             page.Header().Column(column => {
@@ -44,7 +44,7 @@ Document CreateCv(Root document) {
                             .LineVertical(1);
                         row.AutoItem().Text(t => {
                             t.Hyperlink("Github", document.GithubUrl).Underline()
-                                .FontColor(Colors.Blue.Medium);
+                                .FontColor(Colors.Blue.Darken4);
                         });
                     }
                     if (document.LinkedInUrl is not null) {
@@ -53,7 +53,7 @@ Document CreateCv(Root document) {
                             .LineVertical(1);
                         row.AutoItem().Text(t => {
                             t.Hyperlink("LinkedIn", document.LinkedInUrl).Underline()
-                                .FontColor(Colors.Blue.Medium);
+                                .FontColor(Colors.Blue.Darken4);
                         });
                     }
                 });
@@ -64,7 +64,7 @@ Document CreateCv(Root document) {
                     column.Title(documentSection.Title);
                     foreach (var datedItem in documentSection.Items) {
                         column.DatedItem(datedItem);
-                        column.Item().PaddingVertical(5);
+                        column.Item().PaddingVertical(3);
                     }
                 }
             });
