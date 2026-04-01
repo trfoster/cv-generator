@@ -1,6 +1,4 @@
-﻿using System.Collections.Concurrent;
-using System.Net.Mime;
-using System.Text.Json;
+﻿using System.Text.Json;
 using PDFGenerator;
 using QuestPDF.Companion;
 using QuestPDF.Drawing;
@@ -78,6 +76,39 @@ public static class Extensions {
         column.Item().PaddingVertical(5).LineHorizontal(1);
     }
 
+    private static void LinkSpan(this TextDescriptor textDescriptor, string? text, bool isItalic = false) {
+        ArgumentNullException.ThrowIfNull(text);
+        int firstIndex = text.IndexOf('[');
+        if (firstIndex == -1) {
+            if (isItalic) textDescriptor.Span(text).Italic();
+            else textDescriptor.Span(text);
+            return;
+        }
+        
+        int endIndex = -1;
+        for (int index = firstIndex; index > -1; index = text.IndexOf('[', index + 1)) {
+            //Checks if hyperlink is at the start, if not, draws text
+            if (index != 0) {
+                string startText = text.Substring(endIndex + 1, index - endIndex - 1);
+                if (isItalic) textDescriptor.Span(startText).Italic();
+                else  textDescriptor.Span(startText);
+            }
+
+            endIndex = text.IndexOf(']', index + 1);
+            int commaIndex = text.IndexOf(',', index + 1, endIndex - index);
+            
+            string displayText = text[(commaIndex + 1)..endIndex];
+            string urlText = text[(index + 1)..commaIndex];
+            textDescriptor.Hyperlink(displayText, urlText).Underline().FontColor(Colors.Blue.Darken4);
+        }
+
+        if (endIndex != text.Length - 1) {
+            string restOfText = text[(endIndex + 1)..];
+            if (isItalic) textDescriptor.Span(restOfText).Italic();
+            else textDescriptor.Span(restOfText);
+        }
+    }
+
     public static void DatedItem(this ColumnDescriptor column, DatedItem item) {
         column.Item().Row(row => {
             if (item.Title is null) return;
@@ -89,14 +120,15 @@ public static class Extensions {
         if (item.SubTitle is not null || item.Location is not null) {
             column.Item().Row(row => {
                 if (item.SubTitle is not null) {
-                    row.RelativeItem().Text(item.SubTitle);
+                    row.RelativeItem().Text(t => {
+                        t.LinkSpan(item.SubTitle, true);
+                    });
                 }
                 if (item.Location is not null) {
                     row.AutoItem().Text(item.Location).Italic();
                 }
             });
         }
-        column.Item().PaddingVertical(5);
 
         if (item.Points is not null && item.Points.Length > 0) {
             for (int i = 0; i < item.Points.Length; i++) {
@@ -105,7 +137,7 @@ public static class Extensions {
                     if (item.Points[i].Bolded is not null) {
                         t.Span(item.Points[i].Bolded).Bold();
                     }
-                    t.Span(item.Points[i].Content);
+                    t.LinkSpan(item.Points[i].Content);
                 });
             }
         }
