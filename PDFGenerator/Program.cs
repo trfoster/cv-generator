@@ -80,6 +80,7 @@ public static class Extensions {
 
     public static void DatedItem(this ColumnDescriptor column, DatedItem item) {
         column.Item().Row(row => {
+            if (item.Title is null) return;
             row.RelativeItem().Text(item.Title).Bold().FontSize(13);
             if (item.Date is not null) {
                 row.AutoItem().Text(item.Date).Bold();
