@@ -18,11 +18,11 @@
             },
             {
               "Bolded": "Dissertation: ",
-              "Content": "Made a high performance programming teaching tool in C#"
+              "Content": "A high performance programming teaching tool in C#, teaching memory management, parallelism and efficient algorithms to solve a word game extremely quickly"
             },
             {
               "Bolded": "Group work: ",
-              "Content": "Over the 3 years, completed 8 software group projects in various languages, taking an active role in discussions and meeting work quotas"
+              "Content": "Over the 3 years, completed 8 software group projects in various languages, taking an active role in discussions and delivering high quality work"
             }
           ]
         },
@@ -38,18 +38,31 @@
       "Items": [
         {
           "Title": "Coachio.fit",
-          "Date": "2025 - 2026",
+          "Date": "2025 - present",
           "SubTitle": "Backend Software Engineer",
           "Location": "Remote",
           "Points": [
             {
-              "Content": "Solely responsible for the application backend, including the C# API, mongoDB, authentication, Google cloud, Docker, Github actions, documentation"
+              "Content": "Solely responsible for the coaching app backend, including the C# API, mongoDB, authentication, Google cloud, Docker, Github actions, documentation"
             },
             {
-              "Content": "Built entire C# API and mongoDB backend with 40+ endpoints in a 140hr internship with no prior mongoDB experience"
+              "Content": "Built entire C# API and mongoDB backend with 40+ endpoints in a 3 week internship with no prior mongoDB or .NET API experience"
+            },
+            {
+              "Content": "Working closely with frontend team, collaborating on architecture decisions, data pipelines, schemas and API format"
             },
             {
               "Content": "Part time work during uni term time to continue developing the product"
+            }
+          ]
+        },
+        {
+          "Title": "Various cafes",
+          "Date": "2021 - 2024",
+          "SubTitle": "Barista & Front of house",
+          "Points": [
+            {
+              "Content": "Worked in several cafes on weekends and school holidays, working in a team and training new staff"
             }
           ]
         }
@@ -57,11 +70,79 @@
     },
     {
       "Title": "Projects",
-      "Items": []
+      "Items": [
+        {
+          "Title": "Project Pixel",
+          "Date": "2024 - present",
+          "SubTitle": "Project Lead",
+          "Location": "University of Sheffield",
+          "Points": [
+            {
+              "Content": "Leading a team of 20 developers, artists and musicians creating 2D mobile games for charity"
+            },
+            {
+              "Content": "Acted as treasurer, health and safety officer, game designer, programmer and now project lead"
+            },
+            {
+              "Content": "Made the companion game for [https://prideofyorkshire.org/,Pride of Yorkshire's] 300 lion sculpture trail"
+            }
+          ]
+        },
+        {
+          "Title": "Linux Homelab",
+          "Date": "2022 - present",
+          "Points": [
+            {
+              "Content": "Debian homelab hosting cloud storage, game servers, media streaming and deploying apps"
+            },
+            {
+              "Content": "Taught me networking, reverse proxies, docker, firewalls, tracing errors in logs, bash, but most of all problem solving"
+            },
+            {
+              "Content": "Taught me enough about Linux to use Fedora as my main desktop OS"
+            }
+          ]
+        },
+        {
+          "Title": "CV Builder",
+          "SubTitle": "[https://github.com/trfoster/cv-generator,Git repo]",
+          "Date": "2026 - present",
+          "Points": [
+            {
+              "Content": "Wanted an easy way to build CVs, so made a C# API to make PDFs from JSON"
+            }
+          ]
+        }
+      ]
     },
     {
       "Title": "Skills, Certifications & Interests",
-      "Items": []
+      "Items": [
+        {
+          "Points": [
+            {
+              "Bolded": "Certifications: ",
+              "Content": "[https://dometrain.com/course/from-zero-to-hero-git/,Dometrain Git course], [https://dometrain.com/course/from-zero-to-hero-rest-apis-in-asp-net-core/,C# REST Api course], Winner of SheffJamXI game jam"
+            },
+            {
+              "Bolded": "Languages: ",
+              "Content": "Native English, Fluent Spanish"
+            },
+            {
+              "Bolded": "Proficient In: ",
+              "Content": "Git, C#, Java, SQL, MongoDB, Bash, Docker, Unity"
+            },
+            {
+              "Bolded": "Some Experience In: ",
+              "Content": "HTML, CSS, JS, Python, Kotlin, Haskell, Ruby, Cloudflare"
+            },
+            {
+              "Bolded": "Interests: ",
+              "Content": "Built my own espresso machine, poker, fine dining and cooking, game dev"
+            }
+          ]
+        }
+      ]
     }
   ]
   
