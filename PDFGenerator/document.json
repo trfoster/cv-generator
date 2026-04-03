@@ -46,7 +46,7 @@
               "Content": "Solely responsible for the coaching app backend, including the C# API, mongoDB, authentication, Google cloud, Docker, Github actions, documentation"
             },
             {
-              "Content": "Built entire C# API and mongoDB backend with 40+ endpoints in a 3 week internship with no prior mongoDB or .NET API experience"
+              "Content": "Built entire C# API and mongoDB backend with [https://coachio.online/scalar/v1,40+ endpoints] in a 3 week internship with no prior mongoDB or .NET API experience"
             },
             {
               "Content": "Working closely with frontend team, collaborating on architecture decisions, data pipelines, schemas and API format"
@@ -57,12 +57,12 @@
           ]
         },
         {
-          "Title": "Various cafes",
+          "Title": "Cafe work",
           "Date": "2021 - 2024",
           "SubTitle": "Barista & Front of house",
           "Points": [
             {
-              "Content": "Worked in several cafes on weekends and school holidays, working in a team and training new staff"
+              "Content": "Worked in cafes on weekends and school holidays as part of a team, training new staff, customer service"
             }
           ]
         }
@@ -109,7 +109,7 @@
           "Date": "2026 - present",
           "Points": [
             {
-              "Content": "Wanted an easy way to build CVs, so made a C# API to make PDFs from JSON"
+              "Content": "Wanted an easy way to make this CV, so made a C# API to make PDFs from a single JSON object"
             }
           ]
         }
@@ -133,12 +133,12 @@
               "Content": "Git, C#, Java, SQL, MongoDB, Bash, Docker, Unity"
             },
             {
-              "Bolded": "Some Experience In: ",
+              "Bolded": "Experience In: ",
               "Content": "HTML, CSS, JS, Python, Kotlin, Haskell, Ruby, Cloudflare"
             },
             {
               "Bolded": "Interests: ",
-              "Content": "Built my own espresso machine, poker, fine dining and cooking, game dev"
+              "Content": "Built my own espresso machine, fine dining and cooking, poker, game dev"
             }
           ]
         }
