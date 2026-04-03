@@ -8,9 +8,9 @@ using QuestPDF.Infrastructure;
 using Document = QuestPDF.Fluent.Document;
 
 QuestPDF.Settings.License = LicenseType.Community;
-const int defaultFontSize = 12;
+const int defaultFontSize = 11;
 
-using var fontStream = File.OpenRead("../../../Times New Roman.ttf");
+using var fontStream = File.OpenRead("../../../Garamond.ttf");
 FontManager.RegisterFont(fontStream);
 
 string json = File.ReadAllText("../../../document.json");
@@ -23,8 +23,9 @@ Document CreateCv(Root document) {
     return Document.Create(container => {
         container.Page(page => {
             page.Size(PageSizes.A4);
-            page.Margin(1f, Unit.Centimetre);
-            page.DefaultTextStyle(t => t.FontSize(defaultFontSize).FontFamily("Times New Roman"));
+            page.MarginHorizontal(1f, Unit.Centimetre);
+            page.MarginVertical(0.7f, Unit.Centimetre);
+            page.DefaultTextStyle(t => t.FontSize(defaultFontSize).FontFamily("EB Garamond"));
 
             page.Header().Column(column => {
                 column.Item().Text(document.Title).Bold().FontSize(30).AlignCenter();
@@ -132,13 +133,16 @@ public static class Extensions {
 
         if (item.Points is not null && item.Points.Length > 0) {
             for (int i = 0; i < item.Points.Length; i++) {
-                column.Item().Text(t => {
-                    t.Span("- ");
-                    if (item.Points[i].Bolded is not null) {
-                        t.Span(item.Points[i].Bolded).Bold();
-                    }
-                    t.LinkSpan(item.Points[i].Content);
+                column.Item().Row(row => {
+                    row.ConstantItem(11).Text("–");
+                    row.RelativeItem().Text(t => {
+                        if (item.Points[i].Bolded is not null) {
+                            t.Span(item.Points[i].Bolded).Bold();
+                        }
+                        t.LinkSpan(item.Points[i].Content);
+                    });
                 });
+                    
             }
         }
     }
