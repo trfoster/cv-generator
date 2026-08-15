@@ -14,15 +14,19 @@
           "Points": [
             {
               "Bolded": "Relevant Modules: ",
-              "Content": "Cybersecurity, Cryptography, Software Reengineering, Software Testing"
+              "Content": "Cybersecurity, Cryptography, Text Processing, Software Testing"
             },
             {
               "Bolded": "Dissertation: ",
-              "Content": "A high performance programming teaching tool in C#, teaching memory management, parallelism and efficient algorithms to solve a word game extremely quickly"
+              "Content": "Developed a high-performance programming teaching tool in C# to teach memory management, parallelism and efficient algorithms, optimizing solutions for a complex word game"
             },
             {
-              "Bolded": "Group work: ",
-              "Content": "Over the 3 years, completed 8 software group projects in various languages, taking an active role in discussions and delivering high quality work"
+              "Bolded": "Team Projects: ",
+              "Content": "Completed 8 group software projects across multiple languages over 3 years, actively contributing in discussions, code quality and project delivery"
+            },
+            {
+              "Bolded": "Brass Band Web App: ",
+              "Content": "Developed a Java Spring web app in a team for a real client, enabling band practice scheduling and instrument inventory management. Designed and implemented the full MySQL database schema and JDBC ORM mappings, including secure logins and admin roles"
             }
           ]
         },
@@ -43,26 +47,19 @@
           "Location": "Remote",
           "Points": [
             {
-              "Content": "Solely responsible for the coaching app backend, including the C# API, mongoDB, authentication, Google cloud, Docker, Github actions, documentation"
+              "Content": "Took full ownership of backend development, implementing a C# .NET API ([https://coachio.online/scalar/v1,40+ endpoints]) with MongoDB, deployed on Google cloud using Docker compose"
             },
             {
-              "Content": "Built entire C# API and mongoDB backend with [https://coachio.online/scalar/v1,40+ endpoints] in a 3 week internship with no prior mongoDB or .NET API experience"
+              "Content": "Delivered the entire backend within a 3-week internship, learning MongoDB and .NET APIs from scratch"
             },
             {
-              "Content": "Working closely with frontend team, collaborating on architecture decisions, data pipelines, schemas and API format"
+              "Content": "Collaborated closely with frontend developers on API design, data schemas and system architecture"
             },
             {
-              "Content": "Part time work during uni term time to continue developing the product"
-            }
-          ]
-        },
-        {
-          "Title": "Cafe work",
-          "Date": "2021 - 2024",
-          "SubTitle": "Barista & Front of house",
-          "Points": [
+              "Content": "Implemented CI/CD pipelines using Github Actions, documenting all endpoints with Swagger"
+            },
             {
-              "Content": "Worked in cafes on weekends and school holidays as part of a team, training new staff, customer service"
+              "Content": "Continued development part-time during term, contributing to ongoing feature delivery and system improvements"
             }
           ]
         }
@@ -78,13 +75,19 @@
           "Location": "University of Sheffield",
           "Points": [
             {
-              "Content": "Leading a team of 20 developers, artists and musicians creating 2D mobile games for charity"
+              "Content": "Led a 20-person multidisciplinary team to develop and release 2D mobile games for charitable fundraising"
             },
             {
-              "Content": "Acted as treasurer, health and safety officer, game designer, programmer and now project lead"
+              "Content": "Contributed to C# and Unity development, mentoring team members while shaping game design and project leadership"
             },
             {
-              "Content": "Made the companion game for [https://prideofyorkshire.org/,Pride of Yorkshire's] 300 lion sculpture trail"
+              "Content": "Published games end-to-end, including builds, multi-device testing and regional app store compliance"
+            },
+            {
+              "Content": "Managed task coordination, development timelines and team collaboration across technical and creative roles"
+            },
+            {
+              "Content": "Developing the companion game for [https://prideofyorkshire.org/university-students-develop-mobile-game-for-pride-of-yorkshire,Pride of Yorkshire's] 300 lion sculpture trail"
             }
           ]
         },
@@ -93,23 +96,19 @@
           "Date": "2022 - present",
           "Points": [
             {
-              "Content": "Debian homelab hosting cloud storage, game servers, media streaming and deploying apps"
+              "Content": "Sought a low-cost alternative to cloud services for storage and hosting so built a Debian homelab"
             },
             {
-              "Content": "Taught me networking, reverse proxies, docker, firewalls, tracing errors in logs, bash, but most of all problem solving"
+              "Content": "Deployed Nextcloud with RAID and Docker containers exposed through a Cloudflare reverse proxy"
             },
             {
-              "Content": "Taught me enough about Linux to use Fedora as my main desktop OS"
-            }
-          ]
-        },
-        {
-          "Title": "CV Builder",
-          "SubTitle": "[https://github.com/trfoster/cv-generator,Git repo]",
-          "Date": "2026 - present",
-          "Points": [
+              "Content": "Implemented defence-in-depth security (UFW, Fail2Ban, PSAD) with a mail server for intrusion and system alerts"
+            },
             {
-              "Content": "Wanted an easy way to make this CV, so made a C# API to make PDFs from a single JSON object"
+              "Content": "Hosted uni projects, game servers and media services in containers (including this CV via Apache)"
+            },
+            {
+              "Content": "Gained experience in Linux, networking, security hardening, monitoring, bash and debugging with logs"
             }
           ]
         }
@@ -122,7 +121,7 @@
           "Points": [
             {
               "Bolded": "Certifications: ",
-              "Content": "[https://dometrain.com/course/from-zero-to-hero-git/,Dometrain Git course], [https://dometrain.com/course/from-zero-to-hero-rest-apis-in-asp-net-core/,C# REST Api course], Winner of SheffJamXI game jam"
+              "Content": "[https://dometrain.com/course/from-zero-to-hero-git/,Dometrain Git course], [https://dometrain.com/course/from-zero-to-hero-github-actions/,Github Actions course],  [https://dometrain.com/course/from-zero-to-hero-rest-apis-in-asp-net-core/,C# REST Api course], Winner of SheffJamXI game jam"
             },
             {
               "Bolded": "Languages: ",
@@ -130,7 +129,7 @@
             },
             {
               "Bolded": "Proficient In: ",
-              "Content": "Git, C#, Java, SQL, MongoDB, Bash, Docker, Unity"
+              "Content": "Git, Github Actions, C#, Java, SQL, MongoDB, Bash, Docker compose, Unity"
             },
             {
               "Bolded": "Experience In: ",
