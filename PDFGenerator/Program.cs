@@ -13,10 +13,11 @@ const int defaultFontSize = 11;
 using var fontStream = File.OpenRead("../../../Garamond.ttf");
 FontManager.RegisterFont(fontStream);
 
-string json = File.ReadAllText("../../../document.json");
+string json = File.ReadAllText("../../../chef.json");
 var cv = JsonSerializer.Deserialize<Root>(json)!;
 
-CreateCv(cv).ShowInCompanion();
+//CreateCv(cv).ShowInCompanion();
+CreateCv(cv).GeneratePdf("/home/foamtoaster/Downloads/chef-cv.pdf");
 return;
 
 Document CreateCv(Root document) {
@@ -59,6 +60,11 @@ Document CreateCv(Root document) {
             });
 
             page.Content().PaddingVertical(0.5f, Unit.Centimetre).Column(column => {
+                if (document.Summary is not null) {
+                    column.Title("Summary");
+                    column.Item().Text(document.Summary);
+                    column.Item().PaddingVertical(3);
+                }
                 foreach (var documentSection in document.Sections) {
                     column.Title(documentSection.Title);
                     foreach (var datedItem in documentSection.Items) {
